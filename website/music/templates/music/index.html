@@ -1,0 +1,82 @@
+{% load staticfiles %}
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<nav class = "navbar navbar-inverse">
+     <div class="container-fluid">
+        <div class="navbar-header">
+             <button type ="button" data-toggle ="collapse"  class ="navbar-toggle" data-target="#anything" >
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+             </button>
+             <a class="navbar-brand" href="{% url 'music:index' %}">MUSIC</a>
+        </div>
+        <div class="collapse navbar-collapse" id="anything">
+
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+                     <a href="{% url 'music:index' %}">
+                        <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp;
+                        Albums
+                     </a>
+                </li>
+                <li class="">
+                     <a href="#">
+                        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp;
+                        Songs
+                     </a>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-left" method="get" action="#" role="search">
+                <div class="form-group">
+                    <input name="q" class="form-control" type="text" value="" >
+                </div>
+                <button type="submit" class="btn btn-default">
+                    Search
+                </button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                     <a href="#">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+                        Add Albums
+                     </a>
+                </li>
+                <li class="">
+                     <a href="#">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;
+                        Logout
+                     </a>
+                </li>
+            </ul>
+        </div>
+     </div>
+</nav>
+
+
+{% if all_albums %}
+<h1>Here are all the albums: </h1>
+<ul>
+    {% for album in all_albums %}
+    <li><a href="{% url 'music:details' album.id %}"> {{  album.album_title }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <h2>no albums</h2>
+{% endif %}

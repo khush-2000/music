@@ -1,0 +1,12 @@
+body
+{
+   background: white url("images/1.png");
+}
+.navbar
+{
+    border-radius: 0;
+}
+.navbar-brand
+{
+    font-family:'Caveat',cursive;
+}
